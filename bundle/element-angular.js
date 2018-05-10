@@ -3064,7 +3064,7 @@ var ElDataPicker = /** @class */ (function (_super) {
                             useExisting: Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return ElDataPicker; }),
                             multi: true
                         }, __WEBPACK_IMPORTED_MODULE_2__utils_format__["a" /* DateFormat */]],
-                    template: "\n    <div (click)=\"propagationHandle($event)\">\n      <el-input [class]=\"'el-date-editor ' + 'el-date-editor--' + type\"\n        [readonly]=\"!editable || readonly\"\n        [elDisabled]=\"elDisabled\"\n        [size]=\"size\" [placeholder]=\"placeholder\"\n        [icon]=\"iconShowClose ? 'close' : 'date'\"\n        [model]=\"model\"\n        (icon-click)=\"iconClickHandle($event)\"\n        (modelChange)=\"changeHandle($event)\"\n        (icon-mouseenter)=\"iconMouseActionHandle(true)\"\n        (icon-mouseleave)=\"iconMouseActionHandle(false)\"\n        (focus)=\"focusHandle()\">\n      </el-input>\n      <el-data-picker-panel [show]=\"showPanelPicker\"  [hidden-day]=\"hiddenDay\"\n        [panel-absolute]=\"panelAbsolute\" [panel-index]=\"panelIndex\" [width]=\"panelWidth\"\n        [model]=\"value\" (modelChange)=\"dateChangeHandle($event)\">\n      </el-data-picker-panel>\n    </div>\n  ",
+                    template: "\n    <div (click)=\"propagationHandle($event)\">\n      <el-input [class]=\"'el-date-editor ' + 'el-date-editor--' + type\"\n        [readonly]=\"!editable || readonly\"\n        [elDisabled]=\"elDisabled\"\n        [size]=\"size\" [placeholder]=\"placeholder\"\n        [icon]=\"iconShowClose ? 'close' : 'date'\"\n        [model]=\"model\"\n        (icon-click)=\"iconClickHandle($event)\"\n        (modelChange)=\"changeHandle($event)\"\n        (icon-mouseenter)=\"iconMouseActionHandle(true)\"\n        (icon-mouseleave)=\"iconMouseActionHandle(false)\"\n        (focus)=\"focusHandle()\">\n      </el-input>\n      <el-data-picker-panel [show]=\"showPanelPicker\" [hidden-day]=\"hiddenDay\"\n        [panel-absolute]=\"panelAbsolute\" [panel-index]=\"panelIndex\" [width]=\"panelWidth\"\n        [model]=\"value\" (modelChange)=\"dateChangeHandle($event)\">\n      </el-data-picker-panel>\n    </div>\n  ",
                 },] },
     ];
     /**
@@ -10248,7 +10248,7 @@ var ElDatePickerProps = /** @class */ (function () {
         this.changeOnBlur = false;
         this.align = 'left'; // enum: left, center, right
         this.type = 'date'; // enum: year/month/date/week/datetime/datetimerange/daterange
-        this.placeholder = '选择日期';
+        this.placeholder = 'Select date';
         this.format = 'yyyy-MM-dd';
         this.hiddenDay = false;
         this.panelAbsolute = true;
@@ -10363,9 +10363,9 @@ var ElDatePickerPanel = /** @class */ (function () {
         this.showTime = false;
         this.currentView = 'date';
         this.months = [
-            ['JAN', 'FEB', 'MAR', 'APR'],
-            ['MAY', 'JUN', 'JUL', 'AUG'],
-            ['SEP', 'OCT', 'NOV', 'DEC'],
+            'JAN', 'FEB', 'MAR', 'APR',
+            'MAY', 'JUN', 'JUL', 'AUG',
+            'SEP', 'OCT', 'NOV', 'DEC',
         ];
     }
     /**
@@ -10473,6 +10473,7 @@ var ElDatePickerPanel = /** @class */ (function () {
                     selector: 'el-data-picker-panel',
                     animations: [__WEBPACK_IMPORTED_MODULE_2__shared_animation_index__["b" /* dropAnimation */]],
                     styles: [' .el-picker-panel-absolute { position: absolute; } '],
+                    host: { '[class.el-data-picker-panel-shown]': 'shown' },
                     template: "\n    <div [@dropAnimation]=\"show\"\n      [ngStyle]=\"{ width: width ? width + 'px' : 'auto', 'z-index': panelIndex}\"\n      [class]=\"'el-picker-panel el-date-picker '\"\n      [class.has-time]=\"showTime\"\n      [class.el-picker-panel-absolute]=\"panelAbsolute\">\n      <div class=\"el-picker-panel__body-wrapper\">\n        <!--<div class=\"el-picker-panel__sidebar\" *ngIf=\"shortcuts\">-->\n          <!--<button type=\"button\" class=\"el-picker-panel__shortcut\"-->\n            <!--*ngFor=\"shortcut in shortcuts\"-->\n            <!--(click)=\"handleShortcutClick(shortcut)\">-->\n            <!--{{ shortcut.text }}-->\n          <!--</button>-->\n        <!--</div>-->\n        <div class=\"el-picker-panel__body\">\n          <div class=\"el-date-picker__header\">\n            <button class=\"el-picker-panel__icon-btn el-date-picker__prev-btn el-icon-d-arrow-left\"\n              type=\"button\" (click)=\"nextYear(-1)\">\n            </button>\n            <button class=\"el-picker-panel__icon-btn el-date-picker__prev-btn el-icon-arrow-left\"\n              type=\"button\" (click)=\"nextMonth(-1)\"\n              *ngIf=\"currentView === 'date'\">\n            </button>\n\n            <span class=\"el-date-picker__header-label\"\n                  [class.active]=\"currentView === 'month'\"\n                  (click)=\"showPicker('month')\"\n                  *ngIf=\"currentView === 'date'\">{{months[dateShowModels.month]}}</span>\n            \n            <!--year label-->\n            <span class=\"el-date-picker__header-label\" *ngIf=\"currentView !== 'year'\"\n              (click)=\"showPicker('year')\">{{dateShowModels.year}}</span>\n            <!--year range label-->\n            <span class=\"el-date-picker__header-label\" *ngIf=\"currentView === 'year'\">\n              {{dateShowModels.yearRange[0]}} - {{dateShowModels.yearRange[1]}}\n            </span>\n              \n            <button class=\"el-picker-panel__icon-btn el-date-picker__next-btn el-icon-d-arrow-right\"\n              type=\"button\" (click)=\"nextYear(1)\">\n            </button>\n            <button class=\"el-picker-panel__icon-btn el-date-picker__next-btn el-icon-arrow-right\"\n              type=\"button\" (click)=\"nextMonth(1)\"\n              *ngIf=\"currentView === 'date'\">\n            </button>\n          </div>\n\n          <div class=\"el-picker-panel__content\">\n            <el-date-table *ngIf=\"currentView === 'date' && !hiddenDay\"\n              (modelChange)=\"datePickChangeHandle($event)\"\n              [model]=\"model\">\n            </el-date-table>\n            <el-year-table *ngIf=\"currentView === 'year'\"\n              [model]=\"model\"\n              (modelChange)=\"yearPickChangeHandle($event)\"\n              [disabled-date]=\"disabledDate\">\n            </el-year-table>\n            <el-month-table *ngIf=\"currentView === 'month'\"\n              [model]=\"model\"\n              (modelChange)=\"monthPickChangeHandle($event)\"\n              [disabled-date]=\"disabledDate\">\n            </el-month-table>\n          </div>\n        </div>\n      </div>\n\n      <!--<div class=\"el-picker-panel__footer\" *ngIf=\"footerVisible && currentView === 'date'\">-->\n        <!--<a href=\"JavaScript:\" class=\"el-picker-panel__link-btn\" (click)=\"changeToNow()\">556</a>-->\n        <!--<button class=\"el-picker-panel__btn\" type=\"button\"-->\n          <!--(click)=\"confirm()\">667</button>-->\n      <!--</div>-->\n    </div>\n  "
                 },] },
     ];

@@ -24,7 +24,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
         (icon-mouseleave)="iconMouseActionHandle(false)"
         (focus)="focusHandle()">
       </el-input>
-      <el-data-picker-panel [show]="showPanelPicker"  [hidden-day]="hiddenDay"
+      <el-data-picker-panel [show]="showPanelPicker" [hidden-day]="hiddenDay"
         [panel-absolute]="panelAbsolute" [panel-index]="panelIndex" [width]="panelWidth"
         [model]="value" (modelChange)="dateChangeHandle($event)">
       </el-data-picker-panel>

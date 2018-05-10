@@ -12,6 +12,7 @@ export type DateModelItem = {
   selector: 'el-data-picker-panel',
   animations: [dropAnimation],
   styles: [' .el-picker-panel-absolute { position: absolute; } '],
+  host: {'[class.el-data-picker-panel-shown]': 'shown'},
   template: `
     <div [@dropAnimation]="show"
       [ngStyle]="{ width: width ? width + 'px' : 'auto', 'z-index': panelIndex}"
@@ -101,9 +102,9 @@ export class ElDatePickerPanel implements OnInit, OnChanges {
   dateShowModels: DateModelItem
 
   months: any[] = [
-    ['JAN', 'FEB', 'MAR', 'APR'],
-    ['MAY', 'JUN', 'JUL', 'AUG'],
-    ['SEP', 'OCT', 'NOV', 'DEC'],
+    'JAN', 'FEB', 'MAR', 'APR',
+    'MAY', 'JUN', 'JUL', 'AUG',
+    'SEP', 'OCT', 'NOV', 'DEC',
   ];
 
         constructor(
