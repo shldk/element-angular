@@ -12,11 +12,11 @@ export type DateModelItem = {
   selector: 'el-data-picker-panel',
   animations: [dropAnimation],
   styles: [' .el-picker-panel-absolute { position: absolute; } '],
-  host: {'[class.el-data-picker-panel-shown]': 'shown'},
   template: `
     <div [@dropAnimation]="show"
       [ngStyle]="{ width: width ? width + 'px' : 'auto', 'z-index': panelIndex}"
-      [class]="'el-picker-panel el-date-picker '"
+      [class]="'el-picker-panel el-date-picker '" 
+      [class.el-data-picker-panel-shown]="show"
       [class.has-time]="showTime"
       [class.el-picker-panel-absolute]="panelAbsolute">
       <div class="el-picker-panel__body-wrapper">
