@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Optional, Output, SimpleChanges } from '@angular/core'
 import { ElDataPicker } from './picker'
 import { dropAnimation } from '../shared/animation'
-import {monthRows} from './utils/date-constants';
 
 export type DateModelItem = {
   month: number,
@@ -40,7 +39,7 @@ export type DateModelItem = {
             <span class="el-date-picker__header-label"
                   [class.active]="currentView === 'month'"
                   (click)="showPicker('month')"
-                  *ngIf="currentView === 'date'">{{monthRows[dateShowModels.month]}}</span>
+                  *ngIf="currentView === 'date'">{{months[dateShowModels.month]}}</span>
             
             <!--year label-->
             <span class="el-date-picker__header-label" *ngIf="currentView !== 'year'"
@@ -101,9 +100,13 @@ export class ElDatePickerPanel implements OnInit, OnChanges {
   currentView: string = 'date'
   dateShowModels: DateModelItem
 
-  monthRows: any[] = monthRows
+  months: any[] = [
+    ['JAN', 'FEB', 'MAR', 'APR'],
+    ['MAY', 'JUN', 'JUL', 'AUG'],
+    ['SEP', 'OCT', 'NOV', 'DEC'],
+  ];
 
-    constructor(
+        constructor(
     @Optional() public root: ElDataPicker,
   ) {
   }

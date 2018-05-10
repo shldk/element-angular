@@ -1,10 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { monthRows } from '../utils/date-constants';
 var EMonthTable = /** @class */ (function () {
     function EMonthTable() {
         this.showWeekNumber = false;
         this.modelChange = new EventEmitter();
-        this.monthRows = monthRows;
+        this.monthRows = [
+            ['JAN', 'FEB', 'MAR', 'APR'],
+            ['MAY', 'JUN', 'JUL', 'AUG'],
+            ['SEP', 'OCT', 'NOV', 'DEC'],
+        ];
     }
     /**
      * @param {?} i
