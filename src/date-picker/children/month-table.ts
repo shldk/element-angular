@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core'
+import {monthRows} from '../utils/date-constants';
 
 @Component({
   selector: 'el-month-table',
@@ -26,12 +27,8 @@ export class EMonthTable implements OnInit, OnChanges {
   
   currentMonth: number
   date: Date
-  
-  monthRows: any[] = [
-    ['一月', '二月', '三月', '四月'],
-    ['五月', '六月', '七月', '八月'],
-    ['九月', '十月', '十一月', '十二月'],
-  ]
+
+  monthRows: any[] = monthRows
   
   clickHandle(i: number, k: number): void {
     const monthID = 4 * i + k

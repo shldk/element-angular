@@ -41,7 +41,7 @@ export class ElDateTable implements OnInit, OnChanges {
   @Input('disabled-date') disabledDate: any
   @Output() modelChange: EventEmitter<any> = new EventEmitter<any>()
   
-  weeks: string[] = ['日', '一', '二', '三', '四', '五', '六']
+  weeks: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
   tableRows: DateRow[] = [ [], [], [], [], [], [] ]
   targetDay: number
   targetMonthOffset: number = 0               // default: current month, offset = 0

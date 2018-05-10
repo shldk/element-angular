@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Optional, Output, SimpleChanges } from '@angular/core'
 import { ElDataPicker } from './picker'
 import { dropAnimation } from '../shared/animation'
+import {monthRows} from './utils/date-constants';
 
 export type DateModelItem = {
   month: number,
@@ -35,19 +36,20 @@ export type DateModelItem = {
               type="button" (click)="nextMonth(-1)"
               *ngIf="currentView === 'date'">
             </button>
+
+            <span class="el-date-picker__header-label"
+                  [class.active]="currentView === 'month'"
+                  (click)="showPicker('month')"
+                  *ngIf="currentView === 'date'">{{monthRows[dateShowModels.month]}}</span>
             
             <!--year label-->
             <span class="el-date-picker__header-label" *ngIf="currentView !== 'year'"
-              (click)="showPicker('year')">{{dateShowModels.year}} 年</span>
+              (click)="showPicker('year')">{{dateShowModels.year}}</span>
             <!--year range label-->
             <span class="el-date-picker__header-label" *ngIf="currentView === 'year'">
-              {{dateShowModels.yearRange[0]}} 年 - {{dateShowModels.yearRange[1]}} 年
+              {{dateShowModels.yearRange[0]}} - {{dateShowModels.yearRange[1]}}
             </span>
-            
-            <span class="el-date-picker__header-label"
-              [class.active]="currentView === 'month'"
-              (click)="showPicker('month')"
-              *ngIf="currentView === 'date'">{{dateShowModels.month + 1}} 月</span>
+              
             <button class="el-picker-panel__icon-btn el-date-picker__next-btn el-icon-d-arrow-right"
               type="button" (click)="nextYear(1)">
             </button>
@@ -98,8 +100,10 @@ export class ElDatePickerPanel implements OnInit, OnChanges {
   showTime: boolean = false
   currentView: string = 'date'
   dateShowModels: DateModelItem
-  
-  constructor(
+
+  monthRows: any[] = monthRows
+
+    constructor(
     @Optional() public root: ElDataPicker,
   ) {
   }
