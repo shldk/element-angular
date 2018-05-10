@@ -23,9 +23,7 @@
     "elements:update": "node build/bin/elements-update.locale",
     "docs:upload": "node build/bin/docs-upload.locale",
     "docs:update": "node build/bin/docs-update.locale",
-    "login": "node build/bin/login.locale",
-    "commit": "node_modules/commitizen/bin/commitizen init cz-conventional-changelog --save --save-exact",
-    "commitmsg": "commitlint -e $GIT_PARAMS"
+    "login": "node build/bin/login.locale"
   },
   "faas": {
     "domain": "element-angular",
